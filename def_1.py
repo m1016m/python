@@ -17,6 +17,7 @@ def show_unserved_meal(unserved):
     """ 顯示已經服務的餐點 """
     if len(s) :#判斷串列為空
         print "end"
+        print "Test"
         
 
 unserved = ['大麥克', '勁辣雞腿堡', '麥克雞塊']   # 所點餐點
