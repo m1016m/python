@@ -1,4 +1,4 @@
-設計一個點餐系統,將所點的餐點放入unserved,服務完成將餐點放入served
+#設計一個點餐系統,將所點的餐點放入unserved,服務完成將餐點放入served
 def kitchen(unserved, served):
     """ 將未服務的餐點轉為已經服務 """
     for x in unserved :
