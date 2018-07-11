@@ -1,7 +1,11 @@
 def f(x,y):
-   a , b = y , x
-   return a,b
+   
+   if x>y:
+       return "a>b"
+   elif x<y :
+       return "a<b"
+   else:
+       return "a=b"
   
 
-a , b =1 ,2
-print f(a, b)
+print f(5, 4)
