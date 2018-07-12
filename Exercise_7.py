@@ -76,3 +76,26 @@ def f(money , hr):
 f(55 ,14)
 f(96 , 13)
 f(85 , 22)
+
+def f(n):
+    if n <= 0:
+        return 
+    else:
+        row = [1]
+        for i in range(10):
+            print row 
+            p = row[:] 
+            for j in range(1, len(row)):        
+                row[j] = p[j] + p[j-1]
+            row.append(1)
+
+
+f(10)
+for i in range(4):         # 總共有4層
+        for j in range(4 -i - 1): # 在第一個*號出現前，先印出空白
+                 print " ", 
+        for k in range(i + 1):                # 印出該層所需要的*字數量
+                print "* ",
+        print ""                # 換行
+
+
