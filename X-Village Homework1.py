@@ -36,6 +36,7 @@ class Matrix:
         print ""
     def mul(self):
         """return a new Matrix object after multiplication"""
+        
         for  self.y in range(len(X)):
             for self.x in range(len(Y)):
                 for self.i in range(len(result)):  
@@ -52,8 +53,8 @@ class Matrix:
         
         for self.nrows in xrange(self.n):
             for self.ncols in xrange(self.nrows, self.n):
-                X[self.nrows][self.ncols], X[self.ncols][self.nrows] = X[self.ncols][self.nrows], X[self.nrows][self.ncols]
-        for r in X:
+                result[self.nrows][self.ncols], result[self.ncols][self.nrows] = result[self.ncols][self.nrows], result[self.nrows][self.ncols]
+        for r in result:
            print r     
     def display(self):
         """Display the content in the matrix"""
