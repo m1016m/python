@@ -1,16 +1,20 @@
 
 import csv
-from io import open
+import re
 
- 
-# open file
-with open('AQI_20180717105825.csv', 'rb')as f:
-    reader = csv.DictReader(f)
-    for row in reader:
-        if int(row['AQI']) <=10:
+fn = 'AQI_20180717105825.csv'
 
-           print str(row['County']).decode('string_escape')#解決list印出亂碼的問題
-           
+with open(fn) as csvFile:
+    csvReader = csv.reader(csvFile)
+    listReport = list(csvReader)
+    print  " Row = " ,csvReader.line_num , str(listReport).decode('string_escape')#csvReader.line_num表示當前的行數
+    for x in listReport:
+        for y in x :
+            if y[] <=10:
+                print str(listReport['County']).decode('string_escape')#解決list印出亂碼的問題
+            else:
+                print "No Good"
+            
 
 
 
