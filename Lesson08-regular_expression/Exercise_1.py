@@ -13,5 +13,3 @@ print('Requests message body:', response.request.body)
 
 with open('music_show.json', 'w') as outfile:
     json.dump(response.text, outfile)
-
-
