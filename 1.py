@@ -1,29 +1,23 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
-table = [
-    ['A', 'Noah', 90, 92],
-    ['B', 'Liam', 81, 83],
-    ['C', 'William', 87,85],
-    ['B', 'Benjamin.', 82,80],
-    ['A', 'Emma.', 90,94],
-    ['C', 'Olivia', 50,60],
-    ['A', 'Isabella', 70,71],
-    ['C', 'Amelia', 84,86],
-    ['B', 'Mia', 88,85],
-]
-df = pd.DataFrame(table,columns = ['class', 'name', 'math_score', 'eng_score'])
 
-B = df.groupby('class').mean()
-A = df.groupby('class').sum()
-p = pd.concat([B, A],axis = 1,join = 'outer')
+import matplotlib.pyplot as plt
+import pandas as pd
+url = 'http://markets.financialcontent.com/stocks/action/gethistoricaldata?Month=12&Symbol=GOOG&Range=300&Year=2017'
+google_stock = pd.read_csv(url)
+new_google_stock = google_stock.iloc[::-1] # 因為收到的資料是從 12/29/17 開始到 03/28/14，因此要轉個方向變成3/28/14到12/29/17。
+new_google_stock = new_google_stock[:30] # 為了讓上下間距區域變明顯，我們只看前面30天的資料
+
+x = range(0,new_google_stock.shape[0]) # [0,1,2...,945] # 產生 x 座標用
+y = new_google_stock['Open']
+plt.figure(figsize=(10, 5))
+plt.plot(x, y, color='green', linewidth=2.0, linestyle=':')
+plt.fill_between(x,new_google_stock['High'],new_google_stock['Low'],facecolor='yellow')
 
 
 
-
-print (A)
-print(p)
-
-#print (df.describe())
-print (df.corr())
-
+# TODO: magic!
+# TODO: another magic!
+plt.show()
