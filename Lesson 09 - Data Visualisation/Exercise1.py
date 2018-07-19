@@ -6,7 +6,6 @@ print(response.html.text)
 
 
 element = response.html.find('div.text itemprop .text')
-elements = response.html.find('.quote span')
-print (elements)
-
-
+elements = response.html.find('.quote')[0].find('.tag')
+for element in elements :
+    print (element.attrs['href'])
