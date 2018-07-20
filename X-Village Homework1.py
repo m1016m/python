@@ -21,9 +21,9 @@ class Matrix:
              result[self.nrows][self.ncols] = X[self.nrows][self.ncols] + Y[self.nrows][self.ncols]
  
         for r in result:
-           print r
-        print "======A+B======"
-        print ""
+           print (r)
+        print ("======A+B======")
+        print ("")
     def sub(self, m):
         """return a new Matrix object after substraction"""
         for self.nrows in range(len(m)):
@@ -31,9 +31,9 @@ class Matrix:
              result[self.nrows][self.ncols] = X[self.nrows][self.ncols] - Y[self.nrows][self.ncols]
  
         for r in result:
-           print r
-        print "======A-B======"
-        print ""
+           print (r)
+        print ("======A-B======")
+        print ("")
     def mul(self):
         """return a new Matrix object after multiplication"""
         
@@ -43,19 +43,22 @@ class Matrix:
                       result[self.y][self.x] += (X[self.y][self.i]*Y[self.i][self.x]) 
             
         for r in result:
-           print r
-        print "======A*B======"
-        print ""    
+           print (r)
+        print ("======A*B======")
+        print ("")    
     def transpose(self):
         """return a new Matrix object after transpose"""
-        self.n = len(result)
-        result.reverse()
-        
-        for self.nrows in xrange(self.n):
-            for self.ncols in xrange(self.nrows, self.n):
-                result[self.nrows][self.ncols], result[self.ncols][self.nrows] = result[self.ncols][self.nrows], result[self.nrows][self.ncols]
+       #順時針
+        print ("X=")
+        for r in X:
+            print(r)
+        print ("")
+        for i in range(len(X)):
+            for j in range(len(X)):
+                 result[len(X)-1-j][len(X)-1-i] = X[i][len(X)-1-j]
+
         for r in result:
-           print r     
+           print (r)     
     def display(self):
         """Display the content in the matrix"""
         pass
@@ -75,5 +78,10 @@ A.add(X)
 A.sub(X)
 A.mul()
 A.transpose()
+
+
+
+
+
 
 

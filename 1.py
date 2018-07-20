@@ -13,7 +13,7 @@ new_google_stock = new_google_stock[:30] # 為了讓上下間距區域變明顯�
 x = range(0,new_google_stock.shape[0]) # [0,1,2...,945] # 產生 x 座標用
 y = new_google_stock['Open']
 plt.figure(figsize=(10, 5))
-plt.plot(x, y, color='green', linewidth=2.0, linestyle=':')
+plt.plot(x, y, color='green', linewidtha=2.0, linestyle=':')
 plt.fill_between(x,new_google_stock['High'],new_google_stock['Low'],facecolor='yellow')
 
 
