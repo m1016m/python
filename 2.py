@@ -1,14 +1,7 @@
-
-def maker(n):
-    def action(x): # Generate and return action
-        return x * n # action retains N from enclosing scope return action
-    return action
-
-f = maker(2) # Pass 2 to argument N
-g = maker(3) # Pass 3 to argument N
-
-print(f)
-print(f(4)) # Pass 4 to X, N remembers 2: 2*4=4
-
-print(g)
-print(g(4)) # Pass 4 to X, N remembers 3: 3*4=6
+import csv
+with open('menu.csv', 'w', encoding='utf-8-sig') as csvfile:
+    filewriter = csv.writer(csvfile, delimiter=',')
+    filewriter.writerow(['品名', '價格'])
+    filewriter.writerow(['餛飩麵', '50'])
+    filewriter.writerow(['蛋花湯', '25'])
+    filewriter.writerow(['可樂', '20'])
