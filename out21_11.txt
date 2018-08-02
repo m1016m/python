@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<meta property="og:image" content="https://hackmd.io/favicon.png">
+<meta property="fb:app_id" content="1436904003272070">
+
+<meta name="realtime-register-serverurl" content="https://hackmd.io/realtime-reg">
+
+<title>Hake Demo python - HackMD</title>
+<link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+<link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+<script nonce="b87b0868-66f4-4634-86b9-61f255300f0b">
+window.domain = 'hackmd.io'
+window.urlpath = ''
+window.debug = false
+window.version = '1.1.16'
+
+window.GOOGLE_API_KEY = 'AIzaSyCjSrqWHhmWJnoI7JlD88XDSaBgiKbaenA'
+window.GOOGLE_CLIENT_ID = '911617723593-drikdibvvn63slfd6kbqigo8ql1no55s.apps.googleusercontent.com'
+window.DROPBOX_APP_KEY = 'rdoizrlnkuha23r'
+window.IMGUR_CLIENT_ID = '300fb03bd363e5e'
+</script>
+
+
+
+<!-- Google Tag Manager -->
+<script nonce="b87b0868-66f4-4634-86b9-61f255300f0b">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KLW9Z3');</script>
+<!-- End Google Tag Manager -->
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.9.0/bootstrap-social.min.css" integrity="sha256-02JtFTurpwBjQJ6q13iJe82/NF0RbZlJroDegK5g87Y=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.css" integrity="sha256-ijlUKKj3hJCiiT2HWo1kqkI79NTEYpzOsw5Rs3k42dI=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2-bootstrap.min.css" integrity="sha256-NAWFcNIZdH+TS1xpWujF/EB/Y8gwBbEOCoaK/eqaer8=" crossorigin="anonymous" />
+
+<link href="https://hackmd.io/build/font.a1b8087413059f45f22de33f3fbea66b.css" rel="stylesheet">
+
+<link href="https://hackmd.io/build/index.cf02fdcd9782eb7be87e5763775de7a6.css" rel="stylesheet">
+
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+<![endif]-->
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top unselectable hidden-print">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+		<div class="pull-right" style="margin-top: 17px; color: #777; float: right;">
+            <div class="visible-xs">&nbsp;</div>
+            <div class="visible-sm">&nbsp;</div>
+            <div class="visible-md">&nbsp;</div>
+            <div class="visible-lg">&nbsp;</div>
+        </div>
+        <div class="nav-mobile nav-status visible-xs" id="short-online-user-list">
+            <a class="ui-short-status" data-toggle="dropdown"><span class="label label-danger"><i class="fa fa-plug"></i> </span>
+            </a>
+            <ul class="dropdown-menu list" role="menu" aria-labelledby="menu">
+            </ul>
+        </div>
+        
+        <a class="navbar-brand pull-left" style="float: left;" href="https://hackmd.io/"><i class="fa fa-file-text"></i> HackMD</a>
+        
+        <div class="nav-mobile pull-right visible-xs">
+            <span class="btn btn-link btn-file ui-upload-image" title="Upload Image" style="display:none;">
+                <i class="fa fa-camera"></i><input type="file" accept="image/*" name="upload" multiple>
+            </span>
+            <a data-toggle="dropdown" class="btn btn-link">
+                <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu list" role="menu" aria-labelledby="menu">
+                <li role="presentation"><a role="menuitem" class="ui-new" tabindex="-1" href="https://hackmd.io/new" target="_blank"><i class="fa fa-plus fa-fw"></i> New</a>
+                </li>
+                <li role="presentation"><a role="menuitem" class="ui-publish" tabindex="-1" href="#" target="_blank"><i class="fa fa-share-square-o fa-fw"></i> Publish</a>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Extra</li>
+                <li role="presentation"><a role="menuitem" class="ui-extra-revision" tabindex="-1" data-toggle="modal" data-target="#revisionModal"><i class="fa fa-history fa-fw"></i> Revision</a>
+                </li>
+                <li role="presentation"><a role="menuitem" class="ui-extra-slide" tabindex="-1" href="#" target="_blank"><i class="fa fa-tv fa-fw"></i> Slide Mode</a>
+                </li>
+                <li role="presentation"><a role="menuitem" class="ui-extra-book" tabindex="-1" href="#" target="_blank"><i class="fa fa-book fa-fw"></i> Book Mode</a>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Export</li>
+                <li role="presentation"><a role="menuitem" class="ui-save-dropbox" tabindex="-1" href="#" target="_self"><i class="fa fa-dropbox fa-fw"></i> Dropbox</a>
+                </li>
+                <li role="presentation"><a role="menuitem" class="ui-save-google-drive" tabindex="-1" href="#" target="_self"><i class="fa fa-cloud-upload fa-fw"></i> Google Drive</a>
+                </li>
+                
+                <li role="presentation"><a role="menuitem" class="ui-save-gist" tabindex="-1" href="#" target="_blank"><i class="fa fa-github fa-fw"></i> Gist</a>
+                </li>
+                
+                
+                <li class="divider"></li>
+                <li class="dropdown-header">Import</li>
+                <li role="presentation"><a role="menuitem" class="ui-import-dropbox" tabindex="-1" href="#" target="_self"><i class="fa fa-dropbox fa-fw"></i> Dropbox</a>
+                </li>
+                <li role="presentation"><a role="menuitem" class="ui-import-google-drive" tabindex="-1" href="#" target="_self"><i class="fa fa-cloud-download fa-fw"></i> Google Drive</a>
+                </li>
+                <li role="presentation"><a role="menuitem" class="ui-import-gist" href="#" data-toggle="modal" data-target="#gistImportModal"><i class="fa fa-github fa-fw"></i> Gist</a>
+                </li>
+                
+                <li role="presentation"><a role="menuitem" class="ui-import-clipboard" href="#" data-toggle="modal" data-target="#clipboardModal"><i class="fa fa-clipboard fa-fw"></i> Clipboard</a>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Download</li>
+                <li role="presentation"><a role="menuitem" class="ui-download-markdown" tabindex="-1" href="#" target="_blank"><i class="fa fa-file-text fa-fw"></i> Markdown</a>
+                </li>
+                <li role="presentation"><a role="menuitem" class="ui-download-html" tabindex="-1" href="#" target="_blank"><i class="fa fa-file-code-o fa-fw"></i> HTML</a>
+                </li>
+                <li role="presentation"><a role="menuitem" class="ui-download-raw-html" tabindex="-1" href="#" target="_blank"><i class="fa fa-file-code-o fa-fw"></i> Raw HTML</a>
+                </li>
+                <li role="presentation"><a role="menuitem" class="ui-download-odf-beta" tabindex="-1" href="#" target="_blank"><i class="fa fa-file-text-o fa-fw"></i> ODF (Beta)</a>
+                </li>
+                
+                <li class="divider"></li>
+                <li role="presentation"><a role="menuitem" class="ui-help" href="#" data-toggle="modal" data-target=".help-modal"><i class="fa fa-question-circle fa-fw"></i> Help</a>
+                </li>
+            </ul>
+            <a class="btn btn-link ui-mode">
+                <i class="fa fa-pencil"></i>
+            </a>
+        </div>
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-form navbar-left" style="padding:0;">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default ui-edit" style="padding: 6px 9px;" title="Edit (Ctrl+Alt+E)">
+                    <input type="radio" name="mode" autocomplete="off"><i class="fa fa-pencil fa-fw"></i>
+                </label>
+                <label class="btn btn-default ui-both" style="padding: 6px 9px;" title="Both (Ctrl+Alt+B)">
+                    <input type="radio" name="mode" autocomplete="off"><i class="fa fa-columns fa-fw"></i>
+                </label>
+                <label class="btn btn-default ui-view" style="padding: 6px 9px;" title="View (Ctrl+Alt+V)">
+                    <input type="radio" name="mode" autocomplete="off"><i class="fa fa-eye fa-fw"></i>
+                </label>
+            </div>
+            <span class="btn btn-link btn-file ui-help" title="Help" data-toggle="modal" data-target=".help-modal">
+                <i class="fa fa-question-circle"></i>
+            </span>
+            <span class="btn btn-link btn-file ui-upload-image" title="Upload Image" style="display:none;">
+                <i class="fa fa-camera"></i><input type="file" accept="image/*" name="upload" multiple>
+            </span>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li id="online-user-list">
+                <a class="ui-status" data-toggle="dropdown">
+                    <span class="label label-danger"><i class="fa fa-plug"></i> OFFLINE</span>
+                </a>
+                <ul class="dropdown-menu list" role="menu" aria-labelledby="menu" style="right: 15px;width: 200px;">
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="padding:0;">
+            <li>
+                <a href="https://hackmd.io/new" target="_blank" class="ui-new">
+                    <i class="fa fa-plus"></i> New
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank" class="ui-publish">
+                    <i class="fa fa-share-square-o"></i> Publish
+                </a>
+            </li>
+            <li>
+                <a data-toggle="dropdown">
+                    Menu <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu list" role="menu" aria-labelledby="menu">
+                    <li class="dropdown-header">Extra</li>
+                    <li role="presentation"><a role="menuitem" class="ui-extra-revision" tabindex="-1" data-toggle="modal" data-target="#revisionModal"><i class="fa fa-history fa-fw"></i> Revision</a>
+                    </li>
+                    <li role="presentation"><a role="menuitem" class="ui-extra-slide" tabindex="-1" href="#" target="_blank"><i class="fa fa-tv fa-fw"></i> Slide Mode</a>
+                    </li>
+                    <li role="presentation"><a role="menuitem" class="ui-extra-book" tabindex="-1" href="#" target="_blank"><i class="fa fa-book fa-fw"></i> Book Mode</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Export</li>
+                    <li role="presentation"><a role="menuitem" class="ui-save-dropbox" tabindex="-1" href="#" target="_self"><i class="fa fa-dropbox fa-fw"></i> Dropbox</a>
+                    </li>
+                    <li role="presentation"><a role="menuitem" class="ui-save-google-drive" tabindex="-1" href="#" target="_self"><i class="fa fa-cloud-upload fa-fw"></i> Google Drive</a>
+                    </li>
+                    
+                    <li role="presentation"><a role="menuitem" class="ui-save-gist" tabindex="-1" href="#" target="_blank"><i class="fa fa-github fa-fw"></i> Gist</a>
+                    </li>
+                    
+                    
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Import</li>
+                    <li role="presentation"><a role="menuitem" class="ui-import-dropbox" tabindex="-1" href="#" target="_self"><i class="fa fa-dropbox fa-fw"></i> Dropbox</a>
+                    </li>
+                    <li role="presentation"><a role="menuitem" class="ui-import-google-drive" tabindex="-1" href="#" target="_self"><i class="fa fa-cloud-download fa-fw"></i> Google Drive</a>
+                    </li>
+                    <li role="presentation"><a role="menuitem" class="ui-import-gist" href="#" data-toggle="modal" data-target="#gistImportModal"><i class="fa fa-github fa-fw"></i> Gist</a>
+                    </li>
+                    
+                    <li role="presentation"><a role="menuitem" class="ui-import-clipboard" href="#" data-toggle="modal" data-target="#clipboardModal"><i class="fa fa-clipboard fa-fw"></i> Clipboard</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Download</li>
+                    <li role="presentation"><a role="menuitem" class="ui-download-markdown" tabindex="-1" href="#" target="_blank"><i class="fa fa-file-text fa-fw"></i> Markdown</a>
+                    </li>
+                    <li role="presentation"><a role="menuitem" class="ui-download-html" tabindex="-1" href="#" target="_blank"><i class="fa fa-file-code-o fa-fw"></i> HTML</a>
+                    </li>
+                    <li role="presentation"><a role="menuitem" class="ui-download-raw-html" tabindex="-1" href="#" target="_blank"><i class="fa fa-file-code-o fa-fw"></i> Raw HTML</a>
+                    </li>
+                    <li role="presentation"><a role="menuitem" class="ui-download-odf-beta" tabindex="-1" href="#" target="_blank"><i class="fa fa-file-text-o fa-fw"></i> ODF (Beta)</a>
+                    </li>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="ui-spinner unselectable hidden-print"></div>
+
+    <div class="row ui-content" style="display: none;">
+    <div class="ui-edit-area unselectable">
+        <textarea id="textit"></textarea>
+    </div>
+    <div class="ui-view-area">
+        <div class="ui-infobar container-fluid unselectable hidden-print">
+            <small>
+                <span>
+                	<span class="ui-lastchangeuser" style="display: none;">&thinsp;<i class="ui-user-icon small" data-toggle="tooltip" data-placement="right"></i></span>
+                	<span class="ui-no-lastchangeuser">&thinsp;<i class="fa fa-clock-o fa-fw" style="width: 18px;"></i></span>
+                	&nbsp;<span class="text-uppercase ui-status-lastchange"></span>
+                	<span class="ui-lastchange text-uppercase"></span>
+                </span>
+                <span class="ui-permission dropdown pull-right">
+                    <a id="permissionLabel" class="ui-permission-label text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="permissionLabel">
+                        <li class="ui-permission-freely"><a><i class="fa fa-leaf fa-fw"></i> Freely - Anyone can edit</a></li>
+                        <li class="ui-permission-editable"><a><i class="fa fa-shield fa-fw"></i> Editable - Signed-in people can edit</a></li>
+                        <li class="ui-permission-limited"><a><i class="fa fa-id-card fa-fw"></i> Limited - Signed-in people can edit (forbid guests)</a></li>
+                        <li class="ui-permission-locked"><a><i class="fa fa-lock fa-fw"></i> Locked - Only owner can edit</a></li>
+                        <li class="ui-permission-protected"><a><i class="fa fa-umbrella fa-fw"></i> Protected - Only owner can edit (forbid guests)</a></li>
+                        <li class="ui-permission-private"><a><i class="fa fa-hand-stop-o fa-fw"></i> Private - Only owner can view &amp; edit</a></li>
+                        <li class="divider"></li>
+                        <li class="ui-transfer-note"><a><i class="fa fa-exchange fa-fw"></i> Transfer ownership</a></li>
+                        <li class="ui-delete-note"><a><i class="fa fa-trash-o fa-fw"></i> Delete this note</a></li>
+                    </ul>
+                </span>
+                <br>
+                <span class="ui-owner" style="display: none;">
+                    &thinsp;<i class="ui-user-icon small" data-toggle="tooltip" data-placement="right"></i>
+                    &nbsp;<span class="text-uppercase">owned this note</span>
+                </span>
+                <span class="ui-owner-team" style="display: none;">
+                    &thinsp;<i class="ui-user-icon small" data-toggle="tooltip" data-placement="right"></i>
+                    &nbsp;<span class="text-uppercase">owned this note</span>
+                </span>
+                
+            </small>
+        </div>
+        <div id="doc" class="markdown-body container-fluid"></div>
+        <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+            <div class="pull-right dropdown">
+                <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                </ul>
+            </div>
+        </div>
+        <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:51px;display:none;"></div>
+    </div>
+</div>
+<!-- clipboard modal -->
+<div class="modal fade" id="clipboardModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Import from clipboard</h4>
+            </div>
+            <div class="modal-body">
+                <div contenteditable data-ph="Paste your markdown or webpage here..." id="clipboardModalContent" style="overflow:auto;max-height:50vh"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="clipboardModalClear">Clear</button>
+                <button type="button" class="btn btn-primary" id="clipboardModalConfirm">Import</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- locked modal -->
+<div class="modal fade locked-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-lock"></i> This note is locked</h4>
+            </div>
+            <div class="modal-body" style="color:black;">
+                <h5>Sorry, only owner can edit this note.</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- limit modal -->
+<div class="modal fade limit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-triangle"></i> Reach the limit</h4>
+            </div>
+            <div class="modal-body" style="color:black;">
+                <h5>Sorry, you&#39;ve reached the max length this note can be.</h5>
+                <strong>Please reduce the content or divide it to more notes, thank you!</strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- message modal -->
+<div class="modal fade message-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body" style="color:black;">
+                <h5></h5>
+                <a target="_blank" style="word-break: break-all;"></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- gist import modal -->
+<div class="modal fade" id="gistImportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Import from Gist</h4>
+            </div>
+            <div class="modal-body">
+                <input type="url" class="form-control" placeholder="Paste your gist url here... (like: https://gist.github.com/username/gistid)" id="gistImportModalContent">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="gistImportModalClear">Clear</button>
+                <button type="button" class="btn btn-primary" id="gistImportModalConfirm">Import</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- snippet import modal -->
+<div class="modal fade" id="snippetImportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Import from Snippet</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="snippetImportModalAccessToken" />
+                <input type="hidden" id="snippetImportModalBaseURL" />
+                <div class="ui-field-contain" style="display:table;margin-bottom:10px;width:100%;">
+                    <div style="display:table-row;margin-bottom:5px;">
+                        <label style="display:table-cell;">Project:</label>
+                        <select class="form-control" id="snippetImportModalProjects" style="display:table-cell;" disabled="disabled">
+                            <option value="init" selected="selected" disabled="disabled">Select From Available Projects</option>
+                        </select>
+                    </div>
+                    <div style="display:table-row;">
+                        <label style="display:table-cell;">Snippet</label>
+                        <select class="form-control" id="snippetImportModalSnippets" style="display:table-cell;" disabled="disabled">
+                            <option value="init" selected="selected" disabled="disabled">Select From Available Snippets</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="snippet-import-or">OR</p>
+                <input type="url" class="form-control" placeholder="/projects/:id/snippets/:snippet_id" id="snippetImportModalContent" disabled="disabled">
+            </div>
+            <div class="modal-footer">
+                <span id="snippetImportModalLoading"><i class="fa fa-refresh fa-spin fa-fw"></i></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="snippetImportModalClear">Clear</button>
+                <button type="button" class="btn btn-primary" id="snippetImportModalConfirm" disabled="disabled">Import</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- snippet export modal -->
+<div class="modal fade" id="snippetExportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Export to Snippet</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="snippetExportModalAccessToken" />
+                <input type="hidden" id="snippetExportModalBaseURL" />
+                <div class="ui-field-contain" style="display:table;margin-bottom:10px;width:100%;">
+                    <div style="display:table-row;margin-bottom:5px;">
+                        <label style="display:table-cell;">Title:</label>
+                        <input class="form-control" placeholder="new snippet" type="text" id="snippetExportModalTitle" />
+                    </div>
+                    <div style="display:table-row;margin-bottom:5px;">
+                        <label style="display:table-cell;">File Name:</label>
+                        <input class="form-control" placeholder="new_snippet.md" type="text" id="snippetExportModalFileName" />
+                    </div>
+                    <div style="display:table-row;margin-bottom:5px;">
+                        <label style="display:table-cell;">Project:</label>
+                        <select class="form-control" id="snippetExportModalProjects" style="display:table-cell;">
+                            <option value="init" selected="selected" disabled="disabled">Select From Available Projects</option>
+                        </select>
+                    </div>
+                    <div style="display:table-row;margin-bottom:5px;">
+                        <label style="display:table-cell;">Visibility:</label>
+                        <select class="form-control" id="snippetExportModalVisibility" style="display:table-cell;">
+                            <option value="" selected="selected" disabled="disabled">Select Visibility Level</option>
+                            <option value="0">Private</option>
+                            <option value="10">Internal</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="snippetExportModalLoading"><i class="fa fa-refresh fa-spin fa-fw"></i></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="snippetExportModalConfirm">Export</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- delete modal -->
+<div class="modal fade delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+            </div>
+            <div class="modal-body" style="color:black;">
+                <h5 class="ui-delete-modal-msg">Do you really want to delete this note?</h5>
+                <strong class="ui-delete-modal-item">All users will lost their connection.</strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger ui-delete-modal-confirm">Yes, do it!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- transfer modal -->
+<div class="modal fade transfer-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Transfer ownership</h4>
+            </div>
+            <div class="modal-body text-center" style="color:black;">
+                <div class="dropdown btn-group ui-transfer-modal-team-dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuTransferToTeam" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="ui-transfer-modal-team-label">Transfer to team you've joined</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuTransferToTeam"></ul>
+                </div>
+                <div class="ui-transfer-modal-or" style="padding: 5px 0;"><strong>Or</strong></div>
+                <div class="dropdown btn-group ui-transfer-modal-team-member-dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuTransferToTeamMember" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="ui-transfer-modal-team-member-label">Transfer to current team member</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuTransferToTeamMember"></ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger ui-transfer-modal-confirm" disabled>Transfer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- refresh modal -->
+<div class="modal fade" id="refreshModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">This page need refresh</h4>
+            </div>
+            <div class="modal-body">
+                <div class="incompatible-version">
+                    <h5>You have an incompatible client version.</h5>
+                    <strong>Refresh to update.</strong>
+                </div>
+                <div class="new-version" style="display:none;">
+                    <h5>New version available!</h5>
+                    <a href="https://hackmd.io/s/release-notes" target="_blank">See releases notes here</a>
+                    <br>
+                    <strong>Refresh to enjoy new features.</strong>
+                </div>
+                <div class="user-state-changed" style="display:none;">
+                    <h5>Your user state has changed.</h5>
+                    <strong>Refresh to load new user state.</strong>
+                </div>
+            </div>
+            <div class="modal-footer">
+                
+                <a class="btn btn-danger" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=KDGS4PREHX6QQ&lc=US&item_name=HackMD&amount=5%2e00&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted" target="_blank"><i class="fa fa-coffee"></i> Buy us coffee</a>
+                
+                <button type="button" class="btn btn-primary" id="refreshModalRefresh">Refresh</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- signin modal -->
+<div class="modal fade signin-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="mySmallModalLabel">Choose method</h4>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                
+                <a href="https://hackmd.io/auth/facebook" class="btn btn-lg btn-block btn-social btn-facebook">
+                    <i class="fa fa-facebook"></i> Sign in via Facebook
+                </a>
+                
+                
+                <a href="https://hackmd.io/auth/twitter" class="btn btn-lg btn-block btn-social btn-twitter">
+                    <i class="fa fa-twitter"></i> Sign in via Twitter
+                </a>
+                
+                
+                <a href="https://hackmd.io/auth/github" class="btn btn-lg btn-block btn-social btn-github">
+                    <i class="fa fa-github"></i> Sign in via GitHub
+                </a>
+                
+                
+                
+                <a href="https://hackmd.io/auth/dropbox" class="btn btn-lg btn-block btn-social btn-dropbox">
+                    <i class="fa fa-dropbox"></i> Sign in via Dropbox
+                </a>
+                
+                
+                <a href="https://hackmd.io/auth/google" class="btn btn-lg btn-block btn-social btn-google">
+                    <i class="fa fa-google"></i> Sign in via Google
+                </a>
+                
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- help modal -->
+<div class="modal fade help-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="mySmallModalLabel"><i class="fa fa-question-circle"></i> Help</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Contacts</h3>
+                            </div>
+                            <div class="panel-body">
+                                <a href="https://www.messenger.com/t/hackmdio" target="_blank"><i class="fa fa-comments fa-fw"></i> Talk to us</a>
+                                <br>
+                                <a href="https://github.com/hackmdio/hackmd-io-issues/issues" target="_blank"><i class="fa fa-tag fa-fw"></i> Report an issue</a>
+                                <br>
+                                <a href="mailto:hackmdio@gmail.com"><i class="fa fa-envelope fa-fw"></i> Send us email</a>
+                                <br>
+                                <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=KDGS4PREHX6QQ&lc=US&item_name=HackMD&amount=5%2e00&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted" target="_blank"><i class="fa fa-coffee fa-fw"></i> Buy us coffee</a>
+                            </div>
+                        </div>
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Documents</h3>
+                            </div>
+                            <div class="panel-body">
+                                <a href="./features" title="Features" target="_blank"><i class="fa fa-dot-circle-o fa-fw"></i> Features</a>
+                                <br>
+                                <a href="./yaml-metadata" title="YAML Metadata" target="_blank"><i class="fa fa-dot-circle-o fa-fw"></i> YAML Metadata</a>
+                                <br>
+                                <a href="./slide-example" title="Slide Example" target="_blank"><i class="fa fa-dot-circle-o fa-fw"></i> Slide Example</a>
+                                <br>
+                                <a href="./book-example" title="Book Example" target="_blank"><i class="fa fa-dot-circle-o fa-fw"></i> Book Example</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Cheatsheet</h3>
+                            </div>
+                            <div class="panel-body" style="height: calc(100vh - 215px); overflow: auto;">
+                                <table class="table table-condensed table-cheatsheet">
+                                    <thead>
+                                        <tr>
+                                            <th>Example</th>
+                                            <th>Syntax</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="markdown-body" style="font-family: inherit; font-size: 14px; padding: 0; max-width: inherit;">
+                                        <tr>
+                                            <td>Header</td>
+                                            <td># Header</td>
+                                        </tr>
+                                        <tr>
+                                            <td><ul><li>Unordered List</li></ul></td>
+                                            <td>- Unordered List</td>
+                                        </tr>
+                                        <tr>
+                                            <td><ol><li>Ordered List</li></ol></td>
+                                            <td>1. Ordered List</td>
+                                        </tr>
+                                        <tr>
+                                            <td><ul><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled><label></label>Todo List</li></ul></td>
+                                            <td>- [ ] Todo List</td>
+                                        </tr>
+                                        <tr>
+                                            <td><blockquote> Blockquote</blockquote></td>
+                                            <td>> Blockquote</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Bold font</strong></td>
+                                            <td>**Bold font**</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i>Italics font</i></td>
+                                            <td>*Italics font*</td>
+                                        </tr>
+                                        <tr>
+                                            <td><s>Strikethrough</s></td>
+                                            <td>~~Strikethrough~~</td>
+                                        </tr>
+                                        <tr>
+                                            <td>19<sup>th</sup></td>
+                                            <td>19^th^</td>
+                                        </tr>
+                                        <tr>
+                                            <td>H<sub>2</sub>O</td>
+                                            <td>H~2~O</td>
+                                        </tr>
+                                        <tr>
+                                            <td><ins>Inserted text</ins></td>
+                                            <td>++Inserted text++</td>
+                                        </tr>
+                                        <tr>
+                                            <td><mark>Marked text</mark></td>
+                                            <td>==Marked text==</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a>Link</a></td>
+                                            <td>[link text](https:// "title")</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Image</td>
+                                            <td>![image alt](https:// "title")</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>Code</code></td>
+                                            <td>`Code`</td>
+                                        </tr>
+                                        <tr>
+                                            <td><pre style="border:none !important;"><code class="javascript hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span></div><div class="code"><span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+</div></div></code></pre></td>
+                                            <td>```javascript<br>var i = 0;<br>```</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img align="absmiddle" alt=":smile:" class="emoji" src="./build/emojify.js/dist/images/basic/smile.png" title=":smile:"></img></td>
+                                            <td>:smile:</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Externals</td>
+                                            <td>{%youtube youtube_id %}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>L<sup>a</sup>T<sub>e</sub>X</td>
+                                            <td>$L^aT_eX$</td>
+                                        </tr>
+                                        <tr>
+                                            <td><div class="alert alert-info"><p>This is a alert area.</p></div></td>
+                                            <td>:::info<br>This is a alert area.<br>:::</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table.table-cheatsheet tr > td:nth-child(2) {
+        font-family: "Source Code Pro", Consolas, monaco, monospace;
+        letter-spacing: 0.025em;
+        line-height: 1.25;
+    }
+</style>
+
+<!-- revision modal -->
+<div class="modal fade" id="revisionModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width: calc(100vw - 20px); max-width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="mySmallModalLabel"><i class="fa fa-history"></i> Revision</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-4" style="max-height: calc(100vh - 215px); overflow: auto;">
+                        <div class="list-group ui-revision-list"></div>
+                    </div>
+                    <div class="col-sm-8" style="height: calc(100vh - 215px); overflow: hidden;">
+                        <textarea id="revisionViewer" style="display:none;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="revisionModalDownload">Download</button>
+                <button type="button" class="btn btn-danger" id="revisionModalRevert">Revert</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60728495-1"></script>
+<script nonce="b87b0868-66f4-4634-86b9-61f255300f0b">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    let userid = (document.cookie.match('(^|; )userid=([^;]*)')||0)[2];
+    gtag('config', 'UA-60728495-1', {'user_id': userid});
+</script>
+<script src="https://cdn.ravenjs.com/3.24.2/raven.min.js" crossorigin="anonymous"></script>
+<script nonce="b87b0868-66f4-4634-86b9-61f255300f0b">Raven.config('https://b1ed86878f414ccc832dc0f63ffe2daa@sentry.io/121416').install();</script>
+
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLW9Z3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<script src="https://hackmd.io/js/mathjax-config-extra.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js" integrity="sha256-PieqE0QdEDMppwXrTzSZQr6tWFX3W5KkyRVyF1zN3eg=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.0/velocity.min.js" integrity="sha256-bhm0lgEt6ITaZCDzZpkr/VXVrLa5RP4u9v2AYsbzSUk=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" integrity="sha256-jnOjDTXIPqall8M0MyTSt98JetJuZ7Yu+1Jm7hLTF7U=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.7.0/js-yaml.min.js" integrity="sha256-8PanqYAVOGlOct+i65R+HqibK3KPsXINnrSfxN+Y/J0=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha256-yYfngbEKv4RENfGDvNUqJTqGFcKf31NJEe9OTnnMH3Y=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-immzXfCGLhnx3Zfi9F/dUcqxEM8K3o3oTFy9Bh6HCwg=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js" integrity="sha256-HzzZFiY4t0PIv02Tm8/R3CVvLpcjHhO1z/YAUCp4oQ4=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js" integrity="sha256-vvT7Ok9u6GbfnBPXnbM6FVDEO8E1kTdgHOFZOAXrktA=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js" integrity="sha256-tJ52z0aAzZBamAZPedNylrtijTuTMLBabhv/A6eTA1w=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/js/emojify.min.js" integrity="sha256-VAB5tAlKBvgaxw8oJ1crWMVbdmBVl4mP/2M8MNRl+4E=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js" integrity="sha256-Cv5v4i4SuYvwRYzIONifZjoc99CkwfncROMSWat1cVA=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js" integrity="sha256-WPeFPWD3PZQUDrpFnDM1N2KadNVwCfNS4cCZ78b76T8=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js" integrity="sha256-1O3BtOwnPyyRzOszK6P+gqaRoXHV6JXj8HkjZmPYhCI=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.8.0/viz-lite.js" integrity="sha256-lLBbzF3IYSscIpBw/KgKjF1dDWMQdz1RWZnEdnNSDxA=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.8/validator.min.js" integrity="sha256-LHeY7YoYJ0SSXbCx7sR14Pqna+52moaH3bhv0Mjzd/M=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.3.0/url.min.js" integrity="sha256-HOZJz4x+1mn1Si84WT5XKXPtOlTytmZLnMb6n1v4+5Q=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/3.1.1/abcjs_basic-min.js" integrity="sha256-Sq1r2XXWXQoShQKsS0Wrf5r7fRkErd9Fat9vHYeU68s=" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.7.0/flowchart.min.js" integrity="sha256-43MQ88ScIDEvoYOq16yL+qkmb4x5tQF/OD06Uq5NqOw=" crossorigin="anonymous" defer></script>
+
+<script src="https://hackmd.io/build/manifest.c107e139ae1add6512c7.js" defer></script>
+
+<script src="https://hackmd.io/build/font.4701f6f7e2140390c941.js" defer></script>
+
+<script src="https://hackmd.io/build/index-common.b8fc9fe3af30189c16fd.js" defer></script>
+
+<script src="https://hackmd.io/build/index.4cec5c5324ee0456fe50.js" defer></script>
+
+
+
+
+
+</body>
+
+</html>

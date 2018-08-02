@@ -1,16 +1,57 @@
-from stack import Stack
-def dec_to_bin(dec):
-    s=Stack()
-    cur=dec
-    while cur>0:
-        a=cur%2
-        s.push(a)
-        cur = cur // 2
-    binstr=''
-    while not s.isEmpty():
-        binstr+=str(s.pop())
-    return binstr
+#coding:utf-8
+'''
+from urllib.request import urlopen
+import bs4
+import requests
 
-print (dec_to_bin(42))   # 回傳 101010
-print (dec_to_bin(100))  # 回傳 1100100
-print ("")
+url = 'http://www.w3school.com.cn/tags/tag_hn.asp'                     # 網址
+htmlFile= requests.get(url)
+objSoup = bs4.BeautifulSoup(htmlFile.text)
+
+#objSoup.encoding='utf8'
+objTag = objSoup.select('#wrapper')
+objTag = unicode(page, "utf-8")
+print("資料型態     = ", type(objTag))          # 列印資料型態
+print("串列長度     = ", len(objTag))           # 列印串列長度
+print("元素資料型態 = ", type(objTag[0]))
+#print(objTag.content.decode('utf-8'))      # 列印元素資料型態
+print("元素內容     = ", objTag[0].getText())   # 列印元素內容
+'''
+import bs4, requests, os
+
+headers = { 'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64)\
+            AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101\
+            Safari/537.36', }
+url = 'https://www.penghu-nsa.gov.tw/'                     # 這個伺服器會擋住網頁
+html = requests.get(url, headers=headers)           
+print("網頁下載中 ...")
+html.raise_for_status()                             # 驗證網頁是否下載成功                      
+print("網頁下載完成")
+
+destDir = 'out21_26'                                # 設定儲存資料夾
+if os.path.exists(destDir) == False:
+    os.mkdir(destDir)                               # 建立目錄供未來儲存圖片
+
+objSoup = bs4.BeautifulSoup(html.text, 'lxml')      # 建立BeautifulSoup物件
+
+imgTag = objSoup.select('img')                      # 搜尋所有圖片檔案
+print("搜尋到的圖片數量 = ", len(imgTag))           # 列出搜尋到的圖片數量
+if len(imgTag) > 0:                                 # 如果有找到圖片則執行下載與儲存
+    for i in range(len(imgTag)):                    # 迴圈下載圖片與儲存
+        imgUrl = imgTag[i].get('src')               # 取得圖片的路徑
+        print("%s 圖片下載中 ... " % imgUrl)
+        finUrl = url + imgUrl                       # 取得圖片在Internet上的路徑
+        print("%s 圖片下載中 ... " % finUrl)
+        picture = requests.get(finUrl, headers=headers) # 下載圖片
+        picture.raise_for_status()                  # 驗證圖片是否下載成功
+        print("%s 圖片下載成功" % finUrl)
+
+        # 先開啟檔案, 再儲存圖片
+        pictFile = open(os.path.join(destDir, os.path.basename(imgUrl)), 'wb')
+        for diskStorage in picture.iter_content(10240):
+            pictFile.write(diskStorage)
+        pictFile.close()                            # 關閉檔案
+
+
+
+
