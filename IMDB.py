@@ -29,6 +29,29 @@ print(len(movie_containers))
 '''
 first_movie = movie_containers[0]#movie message
 print (first_movie.div)
-print (first_movie.h3.a)
-first_name = first_movie.h3.a.text
-print (first_name)
+print ("電影名稱 : " ,first_movie.h3.a.text)
+'''
+點表示法只能訪問第一個span元素。我們將通過第二個的獨特標記進行搜索<span>。我們將使用的find() 
+
+方法幾乎是一樣的find_all()，但它僅返回第一個匹配。實際上，find()相當於find_all(limit = 1)。
+
+的limit 參數限制了輸出到第一匹配。區分標記由lister-item-year text-muted unbold分配給class
+
+屬性的值組成。所以我們<span>在<h3>標籤中尋找帶有這些值的第一個：
+
+'''
+first_year = first_movie.h3.find('span', class_ = 'lister-item-year text-muted unbold')
+first_year = first_year.text
+print ("發行年份 : " , first_year)
+first_imdb = float(first_movie.strong.text)
+print ("IMDB評級 : " , first_imdb)
+
+'''
+我們最好使用class屬性（metascore favorable）的獨特值。
+請注意，如果從DevTools選項卡中復制粘貼這些值，則metascore和之間將有兩個空格字符favorable。
+將值作為參數傳遞給class_參數時，請確保只有一個空格字符。否則，find()什麼都找不到。
+'''
+first_mscore = first_movie.find('span', class_ = 'metascore favorable')
+print(type(first_mscore))
+first_mscore = int(first_mscore.text)
+print("Metascore 評分 :" , first_mscore)
