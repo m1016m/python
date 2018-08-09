@@ -92,7 +92,7 @@ votes = []
 # Extract data from individual movie container
 for container in movie_containers:
 
-    # If the movie has Metascore, then extract:
+    # 僅當容器具有Metascore時才提取感興趣的數據點:
     if container.find('div', class_ = 'ratings-metascore') is not None:
 
         # The name
@@ -123,14 +123,43 @@ test_df = pd.DataFrame({'movie': names,
                        'votes': votes})
 print(test_df.info())
 
+'''
+如果您從一個英語不是主要語言的國家/地區運行代碼，您很可能會將某些電影名稱翻譯成該國家/地區的主要語言。
 
+最有可能的是，這是因為服務器從您的IP地址推斷出您的位置。即使您位於以英語為主要語言的國家/地區，
+
+您仍可以獲得翻譯內容。如果您在GET提出請求時使用VPN，則可能會發生這種情況。
+'''
+
+headers = {"Accept-Language": "en-US, en;q=0.5"} #該q參數表示我們偏好某種語言的程度。如果未指定，則1默認情況下將值設置
+
+'''
+我們將通過做三件事來構建我們的單頁腳本：
+
+1.在循環中完成我們想要的所有請求。
+2.控制循環的速率以避免使用請求轟炸服務器。
+3.在循環運行時監視循環。
+我們將在2000-2017的間隔期間刮掉每年的前4頁。這18年中每頁有4頁，總共72頁。每頁有50部電影，所以我們最多可以收集3600部電影的數據。
+但並非所有的電影都有Metascore，所以這個數字會低於那個。即便如此，我們仍然很有可能獲得超過2000部電影的數據。
+
+在我們提出請求時，我們只需要改變URL的兩個參數的值：release_date參數和page。讓我們為即將到來的循環準備我們需要的值。
+在下一個代碼單元格中，我們將：
+http://www.imdb.com/search/title?release_date=2017&sort=num_votes,desc&page=1
+創建一個名為的列表pages，並使用與前4頁對應的字符串填充它。
+創建一個名為的列表years_url，並使用與2000-2017年對應的字符串填充它
+'''
 pages = [str(i) for i in range(1,5)]
 years_url = [str(i) for i in range(2000,2018)]
 
 
 start_time = time()
 requests = 0
-
+'''
+控制爬行率
+控制爬行速度對我們以及我們正在抓取的網站都是有益的。如果我們避免每秒數十次請求錘擊服務器，那麼我們就不太可能禁止我們的IP地址
+。我們還通過允許服務器響應其他用戶的請求來避免破壞我們網站的活動。
+我們將使用Python 模塊中的sleep() 函數來控制循環的速率。將暫停執行循環指定的秒數。time sleep()
+'''
 for _ in range(5):
     # A request would go here
     requests += 1
@@ -146,7 +175,39 @@ years = []
 imdb_ratings = []
 metascores = []
 votes = []
+'''
+對於我們的腳本，我們將使用此功能，並監視以下參數：
 
+1.請求的頻率（速度），因此我們確保我們的程序不會使服務器超載。
+2.該請求的數量，所以我們可以停止的情況下，超出預期的請求數量的循環。
+3.我們的請求的狀態代碼，因此我們確保服務器發回適當的響應。
+為了獲得頻率值，我們將請求數除以自第一次請求以來經過的時間。這類似於計算汽車的速度 - 
+
+我們將距離除以覆蓋該距離所需的時間。讓我們首先以小規模試驗這種監測技術。在下面的代碼單元格中，我們將：
+
+使用所設定的開始時間time() 函數從time 模塊，並分配值start_time。
+將0分配給requests我們將用於計算請求數的變量。
+開始循環，然後每次迭代：
+模擬請求。
+請求數增加1。
+暫停循環8到15秒的時間間隔。
+計算自第一個請求以來經過的時間，並將值賦給elapsed_time。
+打印請求數和頻率。
+'''
+
+'''
+1.循環遍歷years_url列表以更改release_dateURL 的參數。
+2.對於每個元素years_url，循環遍歷pages列表以改變pageURL 的參數。
+3.使GET該範圍內的請求pages環（並給出headers參數的權值，以確保我們得到的只有英文內容）。
+4.暫停循環8到15秒的時間間隔。
+5.如前所述監控每個請求。
+6.對非200狀態代碼發出警告。
+7.如果請求數大於預期，則中斷循環。
+8.將responseHTML內容轉換為BeautifulSoup對象。
+9.從此對BeautifulSoup像中提取所有影片容器。
+10.循環遍歷所有這些容器。
+11.如果容器具有Metascore，則提取數據。
+'''
 # Preparing the monitoring of the loop
 start_time = time()
 requests = 0
@@ -168,14 +229,16 @@ for year_url in years_url:
         requests += 1
         elapsed_time = time() - start_time
         print('Request:{}; Frequency: {} requests/s'.format(requests, requests/elapsed_time))
-        clear_output(wait = True)
+        clear_output(wait = True)#由於我們要發出72個請求，因此隨著輸出的累積，我們的工作看起來有些不整潔。
+        #為避免這種情況，我們將在每次迭代後清除輸出，並將其替換為有關最新請求的信息。為此，我們將使用IPython 
+        #模塊中的clear_output()函數
 
         # Throw a warning for non-200 status codes
         if response.status_code != 200:
             warn('Request: {}; Status code: {}'.format(requests, response.status_code))
 
         # Break the loop if the number of requests is greater than expected
-        if requests > 72:
+        if requests > 72:#只發出72個請求
             warn('Number of requests was greater than expected.')  
             break 
 
@@ -209,6 +272,11 @@ for year_url in years_url:
                 # Scrape the number of votes
                 vote = container.find('span', attrs = {'name':'nv'})['data-value']
                 votes.append(int(vote))
+'''
+將數據合併到一隻熊貓中DataFrame。
+打印有關新創建的一些信息DataFrame。
+顯示前10個條目。
+'''
 movie_ratings = pd.DataFrame({'movie': names,
                               'year': years,
                               'imdb': imdb_ratings,
@@ -216,11 +284,35 @@ movie_ratings = pd.DataFrame({'movie': names,
                               'votes': votes})
 print(movie_ratings.info())
 movie_ratings.head(10)
+
+'''
+重新排序列。
+清理year列並將值轉換為整數。
+檢查極限額定值以確定所有額定值是否在預期的時間間隔內。
+歸一化評級類型之一（或兩者）以生成比較直方圖。
+'''
 movie_ratings = movie_ratings[['movie', 'year', 'imdb', 'metascore', 'votes']]
 movie_ratings.head()
+
+'''
+現在讓我們將year列中的所有值轉換為整數。
+
+現在所有的值都屬於這種object類型。為避免ValueErrors轉換，我們希望值僅由0到9的數字組成。
+
+我們來檢查year列的唯一值。這有助於我們了解我們可以做些什麼來實現我們想要的轉化。要查看所有唯一值，我們將使用以下unique()方法：
+'''
 movie_ratings['year'].unique()
-movie_ratings.loc[:, 'year'] = movie_ratings['year'].str[-5:-1].astype(int)
+
+'''
+從最後開始計算，我們可以看到年份總是從第五個字符到第二個字符。我們將使用該.str() 方法僅選擇該間隔。
+我們還將使用以下astype() 方法將結果轉換為整數：
+'''
+movie_ratings.loc[:, 'year'] = movie_ratings['year'].str[-5:-1].astype(int)#str[]通过索引获取字符串中字符
 movie_ratings['year'].head(3)
+
+'''
+現在我們將檢查每種評級的最小值和最大值。我們可以使用pandas的describe() 方法快速完成這項工作。
+'''
 movie_ratings.describe().loc[['min', 'max'], ['imdb', 'metascore']]
 movie_ratings['n_imdb'] = movie_ratings['imdb'] * 10
 movie_ratings.head(3)
@@ -245,3 +337,22 @@ for ax in fig.axes:
     ax.spines['right'].set_visible(False)
 
 plt.show()
+
+'''
+從IMDB 直方圖開始，我們可以看到大多數收視率在6到8之間。評分大於8的電影很少，評分小於4時甚至更少。這表明非常好的電影和非常糟糕的電影很少見。
+
+Metascore評級的分佈類似於正態分佈 - 大多數評級為平均值，峰值為50左右。從此峰值開始，頻率逐漸降低至極端評級值。根據這一分佈，確實有更少的非常好和非常糟糕的電影，但不像IMDB評級所表明的那麼少。
+
+在比較圖表中，更明確的是IMDB分佈高度傾向於平均評級的較高部分，而Metascore評級似乎具有更均衡的分佈。
+
+可能是IMDB分佈出現偏差的原因是什麼？一種假設是許多用戶傾向於使用二進制方法來評估電影。如果他們喜歡這部電影，他們會給它一個10.如果他們不喜歡這部電影，他們會給它一個非常小的評價，或者他們不打算給電影評分。這是一個值得探討的有趣問題。
+
+接下來
+從請求單個網頁的內容到分析超過2000部電影的評級，我們已經走了很長的路。您現在應該知道如何使用相同的HTML和URL結構來抓取許多網頁。
+
+在我們學到的東西的基礎上，接下來要考慮以下幾個步驟：
+
+刮取不同時間和頁面間隔的數據。
+刪除有關電影的其他數據。
+尋找一個不同的網站來蒐集您感興趣的內容。例如，您可以抓取有關筆記本電腦的數據，以了解價格如何隨時間變化。
+'''
