@@ -3,7 +3,7 @@ import bs4, requests, os
 headers = { 'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64)\
             AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101\
             Safari/537.36', }
-url = 'https://www.penghu-nsa.gov.tw/'                     # 這個伺服器會擋住網頁
+url = 'https://www.penghu-nsa.gov.tw/'                     # 這個伺服器會擋住網頁http://aaa.24ht.com.tw
 html = requests.get(url, headers=headers)           
 print("網頁下載中 ...")
 html.raise_for_status()                             # 驗證網頁是否下載成功                      
