@@ -355,4 +355,32 @@ Metascore評級的分佈類似於正態分佈 - 大多數評級為平均值，�
 刮取不同時間和頁面間隔的數據。
 刪除有關電影的其他數據。
 尋找一個不同的網站來蒐集您感興趣的內容。例如，您可以抓取有關筆記本電腦的數據，以了解價格如何隨時間變化。
+
+Pandas 提供的資料結構
+1.Series：用來處理時間序列相關的資料(如感測器資料等)，主要為建立索引的一維陣列。
+2.DataFrame：用來處理結構化(Table like)的資料，有列索引與欄標籤的二維資料集，例如關聯式資料庫、CSV 等等。
+3.Panel：用來處理有資料及索引、列索引與欄標籤的三維資料集。
+DataFrame 的操作 
+❖ 資料描述查看 
+可以透過下列方法查看目前資料的資訊
+.shape
+.describe()
+.head()
+.tail()
+.columns
+.index
+.info()
+print(select_df.shape) # 回傳列數與欄數  
+print("---")  
+print(select_df.describe()) # 回傳描述性統計  
+print("---")  
+print(select_df.head(3)) # 回傳前三筆觀測值  
+print("---")  
+print(select_df.tail(3)) # 回傳後三筆觀測值  
+print("---")  
+print(select_df.columns) # 回傳欄位名稱  
+print("---")  
+print(select_df.index) # 回傳 index  
+print("---")  
+print(select_df.info) # 回傳資料內容  
 '''
