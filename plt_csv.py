@@ -28,4 +28,17 @@ plt.xlabel("", fontsize=14)
 plt.ylabel("Temperature (C)", fontsize=14)
 plt.tick_params(axis='both', labelsize=12, color='red')
 plt.show()
+'''
+%Y 四位數年份 ex:2017
+%y 2位數年份 ex:17
+%m month (1-12)
+%B ex:January
+%A week ex:Sunday
+%d day (1-31)
+%H hr (0-23)
+%I hr(1-12)
+%p AM or PM
+%M min (0-59)
+%S sec (0-59)
+'''
 
