@@ -15,6 +15,7 @@ for i in range(len(dataTag)):                       # 列出含contents_box02的
         
 # 找尋開出順序與大小順序的球
 balls = dataTag[0].find_all('div', {'class':'ball_tx ball_green'})
+#balls = dataTag[2].find_all('div', {'class':'ball_tx ball_yellow'})#要抓yellow時要改成dataTag[2]
 print("開出順序 : ", end='')
 for i in range(6):                                  # 前6球是開出順序
     print(balls[i].text, end='   ')
