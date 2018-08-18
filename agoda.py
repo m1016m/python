@@ -22,6 +22,7 @@ fandango_previous = previous[['FILM', 'Fandango_Stars', 'Fandango_Ratingvalue', 
 fandango_after = after[['movie', 'year', 'fandango']].copy()
 
 print(fandango_previous.head(3))
+print(fandango_previous.head(2))
 '''
 在Hickey的分析之後，我們的新目標是確定Fandango對2015年熱門電影的評分與Fandango對2016年熱門電影的評分之間是否有任何差異
 有了這個新的研究目標，我們有兩個感興趣的人群：
