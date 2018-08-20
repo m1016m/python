@@ -8,6 +8,16 @@ pandas 和 matplotlib
 我們將使用兩個電影評級樣本：一個樣本中的數據是在Hickey的分析之前收集的，而另一個樣本是在之後收集的。這將有助於我們比較分析前後的系統特徵。
 幸運的是，我們在這兩段時間內都有現成的數據：
 Walt Hickey 我們將使用他收集的數據來分析Fandango評級系統的特徵。Dataquest的一名團隊成員收集了2016年和2017年發布的電影的電影評級數據。
+小數位數： display.precision
+有效數字（有效數字位數）： display.float_format
+關於四捨五入的說明
+顯示的最大行數： display.max_rows
+最大顯示列數： display.max_columns
+默認行數/列數顯示： display.show_dimensions
+總體最大顯示寬度： display.width
+每列的最大顯示寬度： display.max_colwidth
+對齊列名稱顯示的右/左： display.colheader_justify
+
 '''
 pd.options.display.max_columns = 100  # Avoid having displayed truncated output
 
@@ -59,6 +69,21 @@ fandango_2016['year'].value_counts()
 import matplotlib.pyplot as plt
 from numpy import arange
 plt.style.use('fivethirtyeight')
+'''
+DataFrame.plot.kde（bw_method = None，ind = None，** kwds ）[來源]
+使用高斯核生成核密度估計圖。
+
+在統計學中，核密度估計（KDE）是一種估計隨機變量的概率密度函數（PDF）的非參數方法。此函數使用高斯內核並包括自動帶寬確定。
+
+參數：	
+bw_method：str，scalar或callable，可選用於計算估計器帶寬的方法。這可以是'scott'，'silverman'，標量常量或可調用。
+如果為None（默認值），則使用“scott”。
+
+ind：NumPy數組或整數，可選估算PDF的評估點。如果為None（默認值），則使用1000個等間距點。
+如果ind是NumPy數組，則在傳遞的點處評估KDE。如果ind是整數， 則使用ind數量等間隔的點。
+
+** kwds：可選其他關鍵字參數記錄在中 pandas.DataFrame.plot()。
+'''
 
 fandango_2015['Fandango_Stars'].plot.kde(label = '2015', legend = True, figsize = (8,5.5))
 fandango_2016['fandango'].plot.kde(label = '2016', legend = True)
