@@ -107,7 +107,7 @@ import json
 
 PTT_URL = 'https://www.ptt.cc'
 
-
+#取得網頁文件的function
 def get_web_page(url):
     time.sleep(0.5)  # 每次爬取前暫停 0.5 秒以免被 PTT 網站判定為大量惡意爬取
     resp = requests.get(
@@ -149,7 +149,7 @@ def get_articles(dom, date):
                     'href': href,
                     'push_count': push_count
                 })
-    return articles, prev_url
+    return articles, prev_url#回傳這一頁的文章和上一頁
 
 
 def parse(dom):
