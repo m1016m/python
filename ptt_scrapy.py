@@ -204,6 +204,19 @@ if __name__ == '__main__':
         with open('data.json', 'w', encoding='utf-8') as f:
             json.dump(articles, f, indent=2, sort_keys=True, ensure_ascii=False)
 
+'''
+json.loads()是将str转化成dict格式，json.dumps()是将dict转化成str格式。
+json.load()和json.dump()也是类似的功能，只是与文件操作结合起来了。
+join()： 连接字符串数组。将字符串、元组、列表中的元素以指定的字符(分隔符)连接生成一个新的字符串
+Skipkeys：默认值是False，如果dict的keys内的数据不是python的基本类型(str,unicode,int,long,float,bool,None)，设置为False时，就会报TypeError的错误。此时设置成True，则会跳过这类key
+ensure_ascii：默认值True，如果dict内含有non-ASCII的字符，则会类似\uXXXX的显示数据，设置成False后，就能正常显示
+indent：应该是一个非负的整型，如果是0，或者为空，则一行显示数据，否则会换行且按照indent的数量显示前面的空白，这样打印出来的json数据也叫pretty-printed json
+separators：分隔符，实际上是(item_separator, dict_separator)的一个元组，默认的就是(‘,’,’:’)；这表示dictionary内keys之间用“,”隔开，而KEY和value之间用“：”隔开。
+encoding：默认是UTF-8，设置json数据的编码方式。
+sort_keys：将数据根据keys的值进行排序。(a-z)
+
+'''
+
 
 
 
