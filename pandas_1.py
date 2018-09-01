@@ -178,6 +178,7 @@ p.legend.orientation = "horizontal"
 
 show(p)
 '''
+#製作元素表
 from bokeh.io import output_file, show
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
