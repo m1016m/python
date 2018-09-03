@@ -68,3 +68,8 @@ cr = plot.circle(x, y, size=20,
 plot.add_tools(HoverTool(tooltips=None, renderers=[cr], mode='hline'))
 
 show(plot)
+'''
+指令:
+python -c "import bokeh.sampledata; bokeh.sampledata.download()"
+sampledata_dir: /tmp/bokeh_data
+'''
