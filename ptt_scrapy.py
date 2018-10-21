@@ -214,6 +214,7 @@ indent：应该是一个非负的整型，如果是0，或者为空，则一行�
 separators：分隔符，实际上是(item_separator, dict_separator)的一个元组，默认的就是(‘,’,’:’)；这表示dictionary内keys之间用“,”隔开，而KEY和value之间用“：”隔开。
 encoding：默认是UTF-8，设置json数据的编码方式。
 sort_keys：将数据根据keys的值进行排序。(a-z)
+Python strip() 方法用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列。 注意：该方法只能删除开头或是结尾的字符，不能删除中间部分的字符。
 
 '''
 
