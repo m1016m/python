@@ -30,3 +30,17 @@ plt.hist(heights)
 plt.title('Height Distribution of is US Presidents')
 plt.xlabel('height (cm)')
 plt.ylabel('number')
+numpy的聚合函式
+np.sum
+np.prod
+np.mean
+np.std  標準差
+np.var  變異量
+np.min  
+np.max
+np.argmin 最小值的索引
+np.argmax
+np.median  中位數
+np.percentile 排名統計
+np.any        當陣列中有任一值是True or not 0 時傳回True
+np.all        當陣列中有所有值是True or not 0 時傳回True
