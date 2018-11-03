@@ -64,6 +64,13 @@ for name, contents in drinks.items():
 [di[0] for di in drinks.items() if 'vodka' in di[1] and 
  'cream' not in di[1] and 'vermount' not in di[1]]
 
+#ex1
+print([key for key, value in drinks.items() if 'vodka' in value])
+
+#ex2
+print([key for key, value in drinks.items() if 'vodka' in value and not ('cream' in value or 'vermouth' in value)])
+
+
 #集合運算
 
 #交集運算: &, intersetion() method
