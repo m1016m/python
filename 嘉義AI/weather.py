@@ -32,8 +32,8 @@ plt.xlabel('height (cm)')
 plt.ylabel('number')
 numpy的聚合函式
 np.sum
-np.prod
-np.mean
+np.prod 計算乘積可以透過axis指定軸向
+np.mean 均值
 np.std  標準差
 np.var  變異量
 np.min  
