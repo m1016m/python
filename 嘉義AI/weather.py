@@ -25,6 +25,7 @@ print ('75th percentile :    ',np.percentile(heights , 75))
 
 import matplotlib.pyplot as plt
 import seaborn; seaborn.set()
+import seaborn as sns
 
 plt.hist(heights)
 plt.title('Height Distribution of is US Presidents')
@@ -44,3 +45,13 @@ np.median  中位數
 np.percentile 排名統計
 np.any        當陣列中有任一值是True or not 0 時傳回True
 np.all        當陣列中有所有值是True or not 0 時傳回True
+
+
+set_style( )  set( )
+
+set_style( )是用来设置主题的，Seaborn有五个预设好的主题： darkgrid , whitegrid , dark , white ,和 ticks  默认： darkgrid
+sns.set_style("whitegrid")
+
+set( )通过设置参数可以用来设置背景，调色板等，更加常用
+sns.set(style="white", palette="muted", color_codes=True)     #set( )设置主题，调色板更常用
+
