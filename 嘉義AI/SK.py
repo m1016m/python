@@ -8,7 +8,7 @@ Created on Wed Oct 31 18:03:18 2018
 '''
 冷知識：scikit-learn 源於於 SciPy，事實上 scikit 有很多個，我們使用的 scikit-learn 
 
-套件是專門用來實作機器學習以及資料採礦的，這也是為什麼使用 learn 來命名:)
+套件是專門用來實作機器學習以及資料採礦的，這也是為什麼使用 learn 來命名:)，這個套件提供了大量常見演算法高效能版本，簡潔，一致，最新的API
 
 我們首先由 sklearn 套件載入 datasets 模組，然後使用 datasets 模組的 load_digits() 
 
@@ -77,7 +77,26 @@ plt.show()
 別忘了使用 plt.show() 將畫好的圖顯示出來！
 '''
 #或者採取這段較簡潔的程式：
+'''
+在這個例子中，我們將兩個陣列存入 images_and_labels 這個變數，然後將這個變數中的前 8 個元素
 
+（包含 digits.images 與相對應的 digits.target）在一個 2 x 4 的格線上繪製子圖形，並且使用 
+
+plt.cm.binary 這個灰階色彩，搭配子圖形標題顯示出來。
+
+經過這兩個視覺化練習之後，您應該對目前手上處理的 digits 資料有更深的認識！
+
+視覺化：主成份分析（Principal Component Analysis, PCA）
+digits 資料有 64 個變數，面對這種高維度的資料（實務上還有其他很多像是財務或者氣候資料也都屬於高維度資料）
+
+，我們需要用一些方法找出特別重要的二到三個變數，或者將許多的變數組合成讓我們更容易理解且視覺化的幾個維度。
+
+這種方法稱作降維（Dimensionality Reduction），我們接著要使用其中一種方法稱為：主成份分析
+
+（Principal Component Analysis, PCA）來協助我們視覺化 digits 資料。主成份分析的精神在於找出變數之間的
+
+線性關係組成新的一個主成份，然後使用這個主成份取代原有的變數，屬於一種最大化資料變異性的線性轉換方法
+'''
 # 從 `sklearn` 載入 `datasets`
 from sklearn import datasets
 # 載入 matplotlib
@@ -102,26 +121,7 @@ for i, (image, label) in enumerate(images_and_labels[:8]):
 
 # 顯示圖形
 plt.show()
-'''
-在這個例子中，我們將兩個陣列存入 images_and_labels 這個變數，然後將這個變數中的前 8 個元素
 
-（包含 digits.images 與相對應的 digits.target）在一個 2 x 4 的格線上繪製子圖形，並且使用 
-
-plt.cm.binary 這個灰階色彩，搭配子圖形標題顯示出來。
-
-經過這兩個視覺化練習之後，您應該對目前手上處理的 digits 資料有更深的認識！
-
-視覺化：主成份分析（Principal Component Analysis, PCA）
-digits 資料有 64 個變數，面對這種高維度的資料（實務上還有其他很多像是財務或者氣候資料也都屬於高維度資料）
-
-，我們需要用一些方法找出特別重要的二到三個變數，或者將許多的變數組合成讓我們更容易理解且視覺化的幾個維度。
-
-這種方法稱作降維（Dimensionality Reduction），我們接著要使用其中一種方法稱為：主成份分析
-
-（Principal Component Analysis, PCA）來協助我們視覺化 digits 資料。主成份分析的精神在於找出變數之間的
-
-線性關係組成新的一個主成份，然後使用這個主成份取代原有的變數，屬於一種最大化資料變異性的線性轉換方法
-'''
 # 建立 K-Means 模型
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
