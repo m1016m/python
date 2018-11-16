@@ -52,3 +52,8 @@ for i in range(10):
 
 # 顯示圖形
 plt.show()
+
+Python提供了一個簡易的function define：lambda，用完即丟，不著痕跡。讓你實作出很簡單的function(只處理一個運算式)。lambda param1, param2, ... : expression
+    #其實就等於
+    def fun( param1, param2, ... ) :
+       return expression
