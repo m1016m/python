@@ -42,7 +42,7 @@ hspace = 0.2＃為子圖之間的空白區域保留的高度
 fig.subplots_adjust(left=0, right=1, bottom=0, top=1, hspace=0.05, wspace=0.05)
 
 # 把前 8 個手寫數字顯示在子圖形
-for i in range(10):
+for i in range(8):
     # 在 2 x 4 網格中第 i + 1 個位置繪製子圖形，並且關掉座標軸刻度
     ax = fig.add_subplot(2, 4, i + 1, xticks = [], yticks = [])
     # 顯示圖形，色彩選擇灰階
