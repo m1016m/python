@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>AirBNB</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http:////code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<link href="star-rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+	<script src="star-rating/js/star-rating.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+	<div id="map" style="width: 800px; height: 500px"></div>
+
+	<script>
+		//---SCOPE---
+		//cluster marker
+		//messages (debug) using console.log
+		//query window
+		//ajax query wrapped in a function
+
+		var map = L.map('map', {
+			center: [38.7512, -76.9864],
+			zoom: 12
+		});
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+
+		var owsrootUrl = 'http://localhost:8080/geoserver/ggs/ows';
+
+
+		var defaultParameters = {
+			service: 'WFS',
+			version: '1.0.0',
+			request: 'GetFeature',
+			typeName: 'airbnb:dc',
+			outputFormat: 'text/javascript',
+			format_options: 'callback:loadGeoJson',
+			srsName: 'EPSG:4326'
+		};
+
+		//setting the default word parameter for Geoserver SQL query
+		var query = "potomac";
+		var cleanliness = 0;
+		var accuracy = 0;
+		var communication = 0;
+		var checkin = 0;
+		var loc = 0;
+		var val = 0;
+		viewparam = {
+			viewparams: "word:" + query +
+				";cleanliness:" + cleanliness +
+				";accuracy:" + accuracy +
+				";communication:" + communication +
+				";checkin:" + checkin +
+				";loc:" + loc +
+				";val:" + val
+		};
+
+		var parameters = L.Util.extend(defaultParameters, viewparam);
+		var URL = owsrootUrl + L.Util.getParamString(parameters);
+
+		console.log("Geoserver URL: " + URL);
+
+		//MarkerClusterGroup that collects all GeoJSON objects
+		var group = new L.markerClusterGroup().addTo(map);
+		var geojsonlayer;
+
+		//Markers
+		var MyIcon = L.Icon.extend({
+		    options: {
+			iconSize:     [32, 37],
+			iconAnchor:   [10, 20],
+			popupAnchor:  [5, -16]
+		    }
+		});
+		var houseIcon = new MyIcon({iconUrl: 'icons/house.png'});
+		var roomIcon = new MyIcon({iconUrl: 'icons/room.png'});
+		var sharedIcon = new MyIcon({iconUrl: 'icons/shared.png'});
+
+
+		queryWFS(URL);
+
+		function queryWFS(URL) {
+			$.ajax({
+				url: URL,
+				dataType: 'jsonp',
+				jsonpCallback: 'loadGeoJson',
+				success: handleJson
+			});
+		}
+
+		function handleJson(data) {
+			//    console.log(data);
+			geojsonlayer = L.geoJson(data, {
+				onEachFeature: function(feature, my_Layer) {
+					my_Layer.bindPopup("<a href='" + feature.properties.listing_url+"' target='_blank'>"+feature.properties.name+"</a><br>"+
+							   "Accuracy: "+feature.properties.accuracy/2+"<br>"+
+							   "Cleanliness: "+feature.properties.cleanliness/2+"<br>"+
+							   "Communication: "+feature.properties.communication/2+"<br>"+
+							   "Check in: "+feature.properties.checkin/2+"<br>"+
+							   "Location: "+feature.properties.location/2+"<br>"+
+							   "Value: "+feature.properties.value/2+"<br>"+
+							   "Review count: "+feature.properties.number_of_reviews
+					);
+				},
+				pointToLayer: function(feature, latlng) {
+					// console.log(latlng);
+					var Icon='';
+					if (feature.properties.room_type.startsWith('Entire')){ Icon = houseIcon;}
+					if (feature.properties.room_type.startsWith('Private')){ Icon= roomIcon;}
+					if (feature.properties.room_type.startsWith('Shared')){ Icon = sharedIcon;}
+					return L.marker(latlng, {icon : Icon});
+
+				}
+			}).addTo(group);
+			map.fitBounds(group.getBounds()); // zooms to fit data
+		}
+
+		// adding the search window in the bottomleft corner
+		myControl = L.control({
+			position: 'bottomleft'
+		});
+
+		myControl.onAdd = function(map) {
+			
+			this._div = L.DomUtil.create('div', 'myControl');
+			this._div.innerHTML = '<input id="accuracy" class="rating" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-default-caption="{rating} accurate" data-clear-caption="Accuracy" data-star-captions="{}"><br>' +
+'<input id="communication" class="rating" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-default-caption="{rating} communicated" data-clear-caption="Communication" data-star-captions="{}"><br>' +
+'<input id="cleanliness" class="rating" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-default-caption="{rating} clean" data-clear-caption="Cleanliness" data-star-captions="{}"><br>' +
+'<input id="checkin" class="rating" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-default-caption="{rating} check-in experience" data-clear-caption="Check In" data-star-captions="{}"><br>' +
+'<input id="loc" class="rating" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-default-caption="{rating} located" data-clear-caption="Location" data-star-captions="{}"><br>' +
+'<input id="val" class="rating" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-default-caption="{rating} value" data-clear-caption="Value" data-star-captions="{}"><br>' +
+				'<input type="text" id="myTextField" value="" />' +
+				'<input type="submit" id="searchBtn" value="Search" onclick="change()"/>'
+			
+			L.DomEvent.disableClickPropagation(this._div);
+			return this._div;
+		}
+		
+		myControl.addTo(map);
+
+		//Functions to either disable (onmouseover) or enable (onmouseout) the map's dragging
+		function controlEnter(e) {
+			map.dragging.disable();
+		}
+
+		function controlLeave() {
+			map.dragging.enable();
+		}
+
+		//Quick application to all input tags
+		var inputTags = document.getElementsByTagName("input")
+		for (var i = 0; i < inputTags.length; i++) {
+			inputTags[i].onmouseover = controlEnter;
+			inputTags[i].onmouseout = controlLeave;
+		}
+
+		function change() {
+			var query = document.getElementById('myTextField').value;
+			var cleanliness = $('#cleanliness').val()*2;
+			var accuracy = $('#accuracy').val()*2;
+			var communication = $('#communication').val()*2;
+			var checkin = $('#checkin').val()*2;
+			var loc = $('#loc').val()*2;
+			var val = $('#val').val()*2;
+			console.log(cleanliness);
+			if (query.length == 0) {
+				alert('Nothing to search for...');
+				return;
+			}
+			// updating the layer means deleting the old one and
+			// adding a new one
+			group.removeLayer(geojsonlayer);
+			//		   hom.setParams({viewparams: "word:" + query});
+			viewparam = {
+				viewparams: "word:" + query +
+				";cleanliness:" + cleanliness +
+				";accuracy:" + accuracy +
+				";communication:" + communication +
+				";checkin:" + checkin +
+				";loc:" + loc +
+				";val:" + val
+			};
+			parameters = L.Util.extend(defaultParameters, viewparam);
+			URL = owsrootUrl + L.Util.getParamString(parameters);
+			//		var URL = geoJsonUrl;
+			console.log("Geoserver URL: " + URL);
+
+			queryWFS(URL);
+
+		}
+
+		function loadGeoJson(data) {
+			console.log("callback function fired");
+		}
+
+	</script>
+</body>
+
+</html>
