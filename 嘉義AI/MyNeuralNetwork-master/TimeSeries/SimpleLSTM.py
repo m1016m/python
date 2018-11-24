@@ -10,7 +10,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 
 
-# 產生 (X, Y) 資料集, Y 是下一期的乘客數
+# 產生 (X, Y) 資料集, Y 是下一期的乘客數 國際航空公司的乘客：每月總數為千人
 def create_dataset(dataset, look_back=1):
 	dataX, dataY = [], []
 	for i in range(len(dataset)-look_back-1):
