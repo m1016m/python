@@ -70,4 +70,11 @@ print('test after load: ', model.predict(mfcc_reshaped))
 
 以進行分析的數位音檔，附檔名通常是 wav。
 
-https://ithelp.ithome.com.tw/upload/images/20180104/200019766LrgiV4bhS.jpg
+我們會對語音作特徵抽取(Feature Extraction)，目前有 FBank、MFCC(Mel frequency cepstral coefficients) 兩種，
+
+特徵抽取前須先對聲音作前置處理：
+
+1.幀(Frame)切割：通常每幀是25ms，幀與幀之間重疊10ms，以避免邊界信號的遺漏。
+2.信號加強：針對高頻信號作加強，使信號更清楚。
+3.加窗(Window)：目的是消除各個幀兩端可能會造成的信號不連續性，常用的窗函數有方窗、漢明窗等。
+4.去除雜訊(denoising or noise reduction)。
