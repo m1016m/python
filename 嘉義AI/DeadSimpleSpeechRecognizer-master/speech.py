@@ -55,3 +55,8 @@ print("labels=", get_labels())
 print("predict=", np.argmax(model.predict(mfcc_reshaped)))
 
 #predict= 2 代表正確
+
+# load
+model = load_model('ASR.h5')
+print('test after load: ', model.predict(mfcc_reshaped))
+
