@@ -60,3 +60,14 @@ print("predict=", np.argmax(model.predict(mfcc_reshaped)))
 model = load_model('ASR.h5')
 print('test after load: ', model.predict(mfcc_reshaped))
 
+語音處理的概念
+
+人類講話的聲音可以以『示波器』(Oscilloscope)測量成一個隨時間變化的波形信號，這種信號對時間的關係，稱之為『時域』
+
+(Time Domain)，在電腦對信號進行分析時，通常信號會先被轉換成在不同頻率下對應的振幅及相位，稱之為『頻域』
+
+（frequency domain），轉換的公式稱為『傅立葉變換』（Fourier transform)，信號經過每隔一段時間取樣，就得到可
+
+以進行分析的數位音檔，附檔名通常是 wav。
+
+https://ithelp.ithome.com.tw/upload/images/20180104/200019766LrgiV4bhS.jpg
