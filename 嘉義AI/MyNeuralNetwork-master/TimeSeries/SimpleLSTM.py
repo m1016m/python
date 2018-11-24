@@ -85,3 +85,26 @@ plt.plot(scaler.inverse_transform(dataset))
 plt.plot(trainPredictPlot)
 plt.plot(testPredictPlot)
 plt.show()
+
+
+探討一個可應用在企業運作上的實例，銷售預測主要是希望藉由過去的銷售記錄預測下一個週期的銷售量，在統計上，我們會使用簡單迴歸，
+
+乃至複雜的『時間序列分析』(Time Series Analysis)來預測銷售趨勢，因為，當期的銷售量通常會與前期的銷售量有緊密的關係，
+
+除非公司發生重大事件，否則，應該會循著規律變化。還記得嗎? 在『自然語言處理』時，我們會使用LSTM考慮上下文的關係，這個模型
+
+恰好與前面講的銷售量預測不謀而合，所以，本篇就以 LSTM 模型來預測銷售量。
+
+銷售量預測的樣態很多種，包括營收、利潤、來客數、遊園人數、銷售產品數/金額、...等等，都屬於同一範疇，以航空公司的每月乘客人數為例
+
+，使用 LSTM 模型預測下個月的乘客數。
+
+時間序列(Time Series Analysis)概念淺介
+
+簡單迴歸(Regression) 公式 y=ax+b，是基於 y(i) 與 y(j) 是相互獨立，沒有任何關聯，但在銷售量的表現上，這個假設並不合理，
+
+公司銷售業績通常不會暴漲暴跌，而是『逐步』上升或下跌，也就是與前期的表現有緊密的關聯，另外，大部分的公司也會有淡、旺季，即
+
+所謂的『季節效應』(Seasonal Effect)，因此，使用更複雜的『時間序列分析』(Time Series Analysis)預測會更貼近事實，時間
+
+序列分析的模型因應問題的型態不同也有很多種，我們以ARIMA(Autoregressive Integrated Moving Average)為例
