@@ -384,3 +384,12 @@ print(select_df.index) # 回傳 index
 print("---")  
 print(select_df.info) # 回傳資料內容  
 '''
+
+pandas fillna()
+
+fillna()会填充nan数据，返回填充后的结果。如果希望在原DataFrame中修改，则把inplace设置为True
+
+df = pd.DataFrame({'id':[1, 2, nan, 4, nan, 6, 1, 2, 3], 'item1':[1, 2, 3, 4, nan, 6, 1, 2, 3], 'item2':[1, 2, 3, 4, 5, 6, 1, nan, 3]})
+print(df)
+df.fillna(0, inplace = True)
+print(df)
