@@ -1,0 +1,66 @@
+# IPython log file
+
+a=5
+a
+import numpy as np
+from numpy.random import randn
+data={i:randn() for i in range(7)}
+data
+print(data)
+an_apple=29
+an_pen=39
+b=[1,2,4,6] #list b
+b
+import datetime
+get_ipython().magic('pinfo a')
+get_ipython().magic('pinfo b')
+b.append? 
+b.append()? 
+get_ipython().magic('pinfo b.append')
+def function01:
+    """
+    just print a message.
+    """
+    print('ya!')
+def function01():
+    """
+    just print a message.
+    """
+    print('ya!')
+def fun01():     #define function fun01()
+    """
+    just print a message.
+    """
+    print('ya!')
+fun01()
+get_ipython().magic('pinfo fun01')
+get_ipython().magic('pinfo2 fun01')
+get_ipython().magic('psearch np.*rand*')
+get_ipython().magic('psearch np.*load*')
+get_ipython().magic('psearch np.load*')
+import pandas as pd
+get_ipython().magic('psearch pd.read*')
+get_ipython().magic('run 03_IPython_test01.py')
+get_ipython().magic('run 03_IPython_test02.py')
+get_ipython().magic('run 03_IPython_test02.py 5 6 7')
+import numpy as np
+a=np.random.randn(100,100)
+a
+get_ipython().magic('pinfo a')
+get_ipython().magic('timeit np.dot(a,a) #%timeit 檢視矩陣相乘 np.dot(a,a) 花費時間')
+get_ipython().magic('magic')
+get_ipython().magic('pinfo %load')
+get_ipython().magic('who')
+get_ipython().magic('who_ls')
+get_ipython().magic('whos')
+get_ipython().magic('xdel b')
+import matplotlib.pyplot as plt
+get_ipython().magic('matplotlib inline')
+img=plt.imread('IMG060.jpg')
+plt.imshow(img)
+plot(randn(1000).cumsum())
+plt.plot(randn(1000).cumsum())
+get_ipython().magic('hist #印出歷史指令')
+get_ipython().magic('logstart')
+get_ipython().system('dir')
+get_ipython().system('type t1.py')

@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Aug  3 10:36:59 2016
+09_Aggregation_and_Group_01_20160912.py
+@author: zzjack
+"""
+#資料準備好後, 分組統計(compute group statistics, groupby)或產生
+#透視表(pivot tables for reporting or visualization purposes.)
+#groupby:對資料分組，並對各組應用一個函數(聚合或轉換或apply函數)
+#In this chapter, you will learn how to:
+# 1. Split a pandas object into pieces using one or more keys (in the form of functions,
+#    arrays, or DataFrame column names)
+# 2. Computing group summary statistics, like count, mean, or standard deviation, or
+#    a user-defined function
+# 3. Apply a varying set of functions to each column of a DataFrame
+# 4. Apply within-group transformations or other manipulations, like normalization,
+#    linear regression, rank, or subset selection
+# 5. Compute pivot tables and cross-tabulations
+# 6. Perform quantile analysis (分位數分析) and other data-derived group analyses
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#GroupBy Mechanics
+
+# example1: 
+import pandas as pd
+from pandas import DataFrame,Series
+import numpy as np
+import matplotlib.pyplot as plt
+# %pylab
+
+#create a DataFrame object df
+df=DataFrame({'key1':['a','a','b','b','a'],
+              'key2':['one','two','one','two','one'],
+              'data1':np.random.randn(5),
+              'data2':np.random.randn(5)})
+
+#display df
+df
+
+
