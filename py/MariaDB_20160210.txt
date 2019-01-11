@@ -1,0 +1,1 @@
+mysql -u root -p //login mariadb as root password: jack321
