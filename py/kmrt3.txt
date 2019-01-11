@@ -1,0 +1,40 @@
+ODMRT_MrtId,ODMRT_Name,ODMRT_Code,ODMRT_CName,ODMRT_Remark
+1,R3,101,小港,Siaogang
+2,R4,102,高雄國際機場,Kaohsiung International Airport
+3,R4A,103,草衙,Caoya
+4,R5,104,前鎮高中,Cianjhen Senior High School
+5,R6,105,凱旋,Kaisyuan
+6,R7,106,獅甲,Shihjia
+7,R8,107,三多商圈,Sanduo Shopping District
+8,R9,108,中央公園,Central Park
+9,R10,109,美麗島,Formosa Boulevard
+10,R11,110,高雄車站,Kaohsiung Main Station
+11,R12,111,後驛,Houyi
+12,R13,112,凹子底,Aozihdi
+13,R14,113,巨蛋,Kaohsiung Arena
+14,R15,114,生態園區,Ecological District
+15,R16,115,左營,Zuoying
+16,R17,116,世運,World Games
+17,R18,117,油廠國小,Oil Refinery Elementary School
+18,R19,118,楠梓加工區,Nanzih Export Processing Zone
+19,R20,119,後勁,Houjing
+20,R21,120,都會公園,Metropolitan Park
+21,R22,121,青埔,Cingpu
+22,R22A,122,橋頭糖廠,Ciaotou Sugar Refinery
+23,R23,123,橋頭火車站,Ciaotou Station
+24,R24,124,南崗山,Gangshan South
+25,O1,201,西子灣,Sizihwan
+26,O2,202,鹽埕埔,Yanchengpu
+27,O4,203,市議會,City Council
+28,O5,204,美麗島,Formosa Boulevard
+29,O6,205,信義國小,Sinyi Elementary School
+30,O7,206,文化中心,Cultural Center
+31,O8,207,五塊厝,Wukuaicuo
+32,O9,208,技擊館,Martial Arts Stadium
+33,O10,209,衛武營,Weiwuying
+34,O11,210,鳳山西站,Fongshan West
+35,O12,211,鳳山,Fongshan
+36,O13,212,大東,Dadong
+37,O14,213,鳳山國中,Fongshan Junior High School
+38,OT1,214,大寮,Daliao
+39,O5/R10,999,美麗島,Formosa Boulevard
