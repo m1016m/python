@@ -8,7 +8,7 @@ Created on Mon Jun 18 16:14:24 2018
 import numpy as np
 #import joblib module
 #conda install -c conda-forge librosa 
-
+##pip install tqdm
 from sklearn.externals import joblib 
 #將 model file 'iris_knn.pkl' 以 joblib.load() 載入
 loadKnnModel=joblib.load('iris_knn.pkl')
