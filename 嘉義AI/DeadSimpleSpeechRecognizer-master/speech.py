@@ -5,6 +5,9 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
 from keras.utils import to_categorical
 
+#conda install -c conda-forge librosa 
+##pip install tqdm
+
 # 載入 data 資料夾的訓練資料，並自動分為『訓練組』及『測試組』
 X_train, X_test, y_train, y_test = get_train_test()
 X_train = X_train.reshape(X_train.shape[0], 20, 11, 1)
