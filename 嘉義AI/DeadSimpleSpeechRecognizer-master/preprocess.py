@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 DATA_PATH = "./data/"
 
-
+#conda install -c conda-forge librosa
 # Input: Folder Path
 # Output: Tuple (Label, Indices of the labels, one-hot encoded labels)
 def get_labels(path=DATA_PATH):
