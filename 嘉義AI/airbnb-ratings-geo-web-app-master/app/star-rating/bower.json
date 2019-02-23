@@ -11,7 +11,7 @@
         "./js/star-rating.min.js"
     ],
     "keywords": [
-        "bootstrap",
+        "bootstrap": ">=3.4.1",
         "star",
         "rating"
     ],
