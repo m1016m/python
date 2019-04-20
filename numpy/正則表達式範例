@@ -1,0 +1,23 @@
+import re
+
+import fileinput
+import pandas as pd
+'''
+for line in fileinput.input(['test 拷貝.txt'], inplace=True):
+     print(line.replace('(Nh)', ' '), end='')
+'''
+s="我是一个人 (中国人) aaa[ 真的] bbbb {确定}"
+a = re.sub(u"\\(.*?\\)|\\{.*?}|\\[.*?]", "", s)
+print (a)
+
+r = '我(Nh)　最近(Nd)　較(Dfa)　有(V_2)　記憶(Na)　的(DE)　是(SHI)　關於(P)　考試(Na)　的(DE)　夢(Na)　，'
+b = re.sub(u"\\(.*?\\)", "", r)
+print (b)
+
+import fileinput, re
+filename = 'test 拷貝.txt'
+with fileinput.FileInput(filename, inplace=True, backup='.bak') as file:
+    for line in file:
+        c = re.sub(u"\\(.*?\\)", "", line)
+        d = c.replace('-' , '')
+        print(d)
