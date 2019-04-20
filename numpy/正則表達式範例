@@ -20,4 +20,60 @@ with fileinput.FileInput(filename, inplace=True, backup='.bak') as file:
     for line in file:
         c = re.sub(u"\\(.*?\\)", "", line)
         d = c.replace('-' , '')
-        print(d)
+        e = d.replace('\n' , '')
+        f = e.strip()
+        print(f)
+
+作用：去除字符串中的空格或指定字符
+
+一、默认用法：去除空格
+str.strip()  ： 去除字符串两边的空格
+str.lstrip() ： 去除字符串左边的空格
+str.rstrip() ： 去除字符串右边的空格
+
+注：此处的空格包含'\n', '\r',  '\t',  ' '
+
+默认用法实例
+
+
+>>> dodo = "  hello boy "
+ 
+>>> dodo.strip()
+'hello boy'
+ 
+>>> dodo.lstrip()
+'hello boy '
+ 
+>>> dodo.rstrip()
+'  hello boy'</span>
+
+
+二、去除指定字符
+str.strip('do')  ：去除字符串两端指定的字符
+str.lstrip('do') ：用于去除左边指定的字符
+str.rstrip('do') ：用于去除右边指定的字符
+
+三个函数都可以传入一个参数(这里以'do'为例)，指定要去除的首尾字符，编译器会去除两端所有相应的字符，直到没有匹配的字符
+
+注：
+1.去除指定字符时首尾不能出现空格，否则传入参数的时候也需要加入空格
+2.指定的字符表示的一种组合，例如'do'表示'dd','do','od','oo','ddd','ooo'等
+
+去除字符实例
+>>> dodo = "say hello say boy saaayaaas"
+ 
+>>> dodo.strip('say')
+' hello say boy '
+>>> dodo.strip('yas')
+' hello say boy '
+ 
+#当传入的参数中加入空格时
+>>> dodo.strip('say ')
+'hello say bo'
+ 
+>>> dodo.lstrip('say')
+' hello say boy saaayaaas'
+ 
+>>> dodo.rstrip('say')
+'say hello say boy '
+
