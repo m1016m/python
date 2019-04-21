@@ -77,3 +77,4 @@ str.rstrip('do') ：用于去除右边指定的字符
 >>> dodo.rstrip('say')
 'say hello say boy '
 
+https://www.cnblogs.com/lzhc/p/7922886.html
