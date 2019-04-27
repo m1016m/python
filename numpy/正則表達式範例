@@ -77,4 +77,37 @@ str.rstrip('do') ：用于去除右边指定的字符
 >>> dodo.rstrip('say')
 'say hello say boy '
 
+
+import re
+
+source = '123 Young Frankenstein , 123 Young Frankenstein , \n Young Frankenstein' 
+m = re.match(u'Young' , source)#match 只會在模式位於來源的開頭時才會有效 m = re.match(u'\d*' , source)
+m1 = re.search('Young' , source)#m1 = re.search('\d*' , source)
+m2 = re.sub(u'Young' , '_' ,source)#m2 = re.sub(u'\d' , '_' ,source)
+if m :
+     print('m =',m.group())
+
+if m1 :
+     print(m1.group())
+
+if m2 :
+     print(m2)
+print('*'*20)
+
+m = re.match('^You' , source)
+if m :
+     print(m.group())
+print('*'*20)
+m = re.match('Young Frankenstein\$' , source)
+if m :
+     print(m.group())
+
+#找到後面是ish前面是w或f
+s = 'I wish ! I wish ! fish fish. fish'
+ss = 'I wish jjjjj! I wish ! mmmmmmfish fish. fish'
+r = re.findall('[wf]ish' , s)
+r1 = re.findall('{ s }' , ss)
+print(r)
+print(r1)
+
 https://www.cnblogs.com/lzhc/p/7922886.html
